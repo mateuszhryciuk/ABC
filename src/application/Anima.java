@@ -24,11 +24,11 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import java.io.File;
 
-public class Anima extends Application{
+public class Anima extends Pane{
 	
 	
-		@Override
-		public void start (Stage primaryStage){
+		
+		public void play (){
 	
 			
 			Media introSound =  new Media (getClass().getClassLoader().getResource("xylophone.wav").toString());
@@ -38,43 +38,43 @@ public class Anima extends Application{
 			
 			
 			
-			 Pane pane = new Pane();
+			// this this = new this();
 			 
 			 Line line1 = new Line();
 			 line1.setStartX(0);
-			 line1.startYProperty().bind(pane.heightProperty().divide(2));
+			 line1.startYProperty().bind(this.heightProperty().divide(2));
 			 line1.setEndX(330);
-			 line1.endYProperty().bind(pane.heightProperty().divide(2));
+			 line1.endYProperty().bind(this.heightProperty().divide(2));
 			 
 			 Line line2 = new Line();
 			 line2.setStartX(0);
-			 line2.startYProperty().bind(pane.heightProperty().divide(4));
+			 line2.startYProperty().bind(this.heightProperty().divide(4));
 			 line2.setEndX(459);
-			 line2.endYProperty().bind(pane.heightProperty().divide(2));
+			 line2.endYProperty().bind(this.heightProperty().divide(2));
 			
 			 Line line3 = new Line();
 			 line3.setStartX(800);
-			 line3.startYProperty().bind(pane.heightProperty().divide(2));
+			 line3.startYProperty().bind(this.heightProperty().divide(2));
 			 line3.setEndX(514);
-			 line3.endYProperty().bind(pane.heightProperty().divide(2));
+			 line3.endYProperty().bind(this.heightProperty().divide(2));
 			 
 			 Line lineA = new Line();
 			 lineA.setStartX(400);
-			 lineA.startYProperty().bind(pane.heightProperty().divide(2));
+			 lineA.startYProperty().bind(this.heightProperty().divide(2));
 			 lineA.setEndX(320);
-			 lineA.endYProperty().bind(pane.heightProperty().divide(2));
+			 lineA.endYProperty().bind(this.heightProperty().divide(2));
 			 
 			 Line lineB = new Line();
 			 lineB.setStartX(459);
-			 lineB.startYProperty().bind(pane.heightProperty().divide(2));
+			 lineB.startYProperty().bind(this.heightProperty().divide(2));
 			 lineB.setEndX(379);
-			 lineB.endYProperty().bind(pane.heightProperty().divide(2));
+			 lineB.endYProperty().bind(this.heightProperty().divide(2));
 			 
 			 Line lineC = new Line();
 			 lineC.setStartX(514);
-			 lineC.startYProperty().bind(pane.heightProperty().divide(2));
+			 lineC.startYProperty().bind(this.heightProperty().divide(2));
 			 lineC.setEndX(434);
-			 lineC.endYProperty().bind(pane.heightProperty().divide(2));
+			 lineC.endYProperty().bind(this.heightProperty().divide(2));
 			 			 			 			 
 						 
 			 Font font =  Font.font ("SansSerif",FontWeight.BOLD,80);
@@ -138,11 +138,11 @@ public class Anima extends Application{
 			 
 			 
 		     EventHandler<ActionEvent> eventHandlerC = e ->{
-			     pane.getChildren().add(labelC); };
+			     this.getChildren().add(labelC); };
 			 
 			 EventHandler<ActionEvent> eventHandlerB = e ->{
 				 mediaPlayer.play();
-				 pane.getChildren().add(labelB);};
+				 this.getChildren().add(labelB);};
 				 
 				 EventHandler<ActionEvent> eventHandlerAll = e ->{					 
 					 pathA.play();
@@ -161,24 +161,17 @@ public class Anima extends Application{
 		 Timeline animC = new Timeline(KeyFrameC);
 		 Timeline animAll = new Timeline(KeyFrameAll);
 			 
-			 pane.getChildren().add(labelA);
+			 this.getChildren().add(labelA);
 			 
 			 SequentialTransition sTransition1 = new SequentialTransition();
 		 sTransition1.getChildren().addAll(path1,fillA,animB,parallel,fillB,animC,path3,fillC,animAll);
 	
 		 sTransition1.play();
-		 pane.getChildren().add(labelB);
+		 this.getChildren().add(labelB);
 		 			 
-			 Scene scene = new Scene(pane,800,400);
-			 
-			 primaryStage.setTitle("FontDemo");
-		   primaryStage.setScene(scene);
-			 primaryStage.show();
-		}
-		public static void main(String[] args) {
-			launch(args);	
-		}
 			
 		}
+}
+	
 
 
