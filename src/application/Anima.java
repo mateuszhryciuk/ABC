@@ -28,52 +28,47 @@ public class Anima extends Pane{
 	
 	
 		
-		public void play (){
+		public void play (Stage stage , Scene scene){
 	
 			
 			Media introSound =  new Media (getClass().getClassLoader().getResource("xylophone.wav").toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(introSound);
-			
-
-			
-			
-			
-			// this this = new this();
+		
 			 
 			 Line line1 = new Line();
 			 line1.setStartX(0);
 			 line1.startYProperty().bind(this.heightProperty().divide(2));
-			 line1.setEndX(330);
+			 line1.setEndX(230);
 			 line1.endYProperty().bind(this.heightProperty().divide(2));
 			 
 			 Line line2 = new Line();
 			 line2.setStartX(0);
 			 line2.startYProperty().bind(this.heightProperty().divide(4));
-			 line2.setEndX(459);
+			 line2.setEndX(359);
 			 line2.endYProperty().bind(this.heightProperty().divide(2));
 			
 			 Line line3 = new Line();
-			 line3.setStartX(800);
+			 line3.setStartX(600);
 			 line3.startYProperty().bind(this.heightProperty().divide(2));
-			 line3.setEndX(514);
+			 line3.setEndX(414);
 			 line3.endYProperty().bind(this.heightProperty().divide(2));
 			 
 			 Line lineA = new Line();
 			 lineA.setStartX(400);
 			 lineA.startYProperty().bind(this.heightProperty().divide(2));
-			 lineA.setEndX(320);
+			 lineA.setEndX(220);
 			 lineA.endYProperty().bind(this.heightProperty().divide(2));
 			 
 			 Line lineB = new Line();
-			 lineB.setStartX(459);
+			 lineB.setStartX(359);
 			 lineB.startYProperty().bind(this.heightProperty().divide(2));
-			 lineB.setEndX(379);
+			 lineB.setEndX(279);
 			 lineB.endYProperty().bind(this.heightProperty().divide(2));
 			 
 			 Line lineC = new Line();
-			 lineC.setStartX(514);
+			 lineC.setStartX(414);
 			 lineC.startYProperty().bind(this.heightProperty().divide(2));
-			 lineC.setEndX(434);
+			 lineC.setEndX(334);
 			 lineC.endYProperty().bind(this.heightProperty().divide(2));
 			 			 			 			 
 						 
@@ -91,20 +86,20 @@ public class Anima extends Pane{
 			
 			 
 			 PathTransition path1 = new PathTransition();
-			 path1.setDuration(Duration.millis(500));
+			 path1.setDuration(Duration.millis(200));
 			 path1.setPath(line1);
 			 path1.setNode(labelA);
 			 
 			 FillTransition  fillA = new FillTransition ( Duration.millis(1),labelA,Color.web("#242424"),Color.web("#C00909"));
 			 
 			 PathTransition path2 = new PathTransition();
-			 path2.setDuration(Duration.millis(500));
+			 path2.setDuration(Duration.millis(580));
 			 path2.setPath(line2);
 	
 			 
 			 RotateTransition rotate = new RotateTransition();
-			 rotate.setDuration(Duration.millis(500));
-			 rotate.setByAngle(720);
+			 rotate.setDuration(Duration.millis(580));
+			 rotate.setByAngle(740);
 	
 			 
 			 ParallelTransition parallel = new ParallelTransition (labelB,path2,rotate);
@@ -150,21 +145,26 @@ public class Anima extends Pane{
 					 pathC.play();
 					
 					};
+					
+					EventHandler<ActionEvent> eventHandlerEnd = e ->{
+					     stage.setScene(scene); };
 
 		 KeyFrame KeyFrameC = new KeyFrame(Duration.millis(1),eventHandlerC);
 		 KeyFrame KeyFrameB = new KeyFrame(Duration.millis(1),eventHandlerB);
 		 KeyFrame KeyFrameAll = new KeyFrame(Duration.millis(1),eventHandlerAll);
+		 KeyFrame KeyFrameEnd = new KeyFrame(Duration.millis(3000),eventHandlerEnd);
 
 			 
 	
 		 Timeline animB = new Timeline (KeyFrameB);
 		 Timeline animC = new Timeline(KeyFrameC);
 		 Timeline animAll = new Timeline(KeyFrameAll);
+		 Timeline animEnd = new Timeline(KeyFrameEnd);
 			 
 			 this.getChildren().add(labelA);
 			 
 			 SequentialTransition sTransition1 = new SequentialTransition();
-		 sTransition1.getChildren().addAll(path1,fillA,animB,parallel,fillB,animC,path3,fillC,animAll);
+		 sTransition1.getChildren().addAll(path1,fillA,animB,parallel,fillB,animC,path3,fillC,animAll,animEnd);
 	
 		 sTransition1.play();
 		 this.getChildren().add(labelB);
