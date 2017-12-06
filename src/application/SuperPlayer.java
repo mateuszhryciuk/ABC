@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class SuperPlayer extends Player{
 	
-	ArrayList<Player> players;
-	private String password;
+	  public void setupRewardScore(ArrayList<Player> players, String name , int score ){}
 
 }

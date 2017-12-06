@@ -23,6 +23,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import java.io.File;
+import javafx.scene.image.Image;
 
 public class Anima extends Pane{
 	

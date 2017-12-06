@@ -4,9 +4,18 @@ import java.util.*;
 
 public class Player {
 	
-	private String name ;
+	protected String name ;
 	private int age ;
-	ArrayList<Game> gameList ;
+	ArrayList<Game> gameList = new ArrayList<>();
+	
+	public Player(String name  ){
+		
+		this.name = name;
+//		this.age = age;
+		gameList.add(new Literki());
+	}
+	
+	
 	
 	public String getName(){
 		return name ;
@@ -17,6 +26,18 @@ public class Player {
 		return age;
 	
 	}
+	
+	public Game getGame(int num){
+		
+		return gameList.get(num);
+	}
+	 public Player getPlayer (){
+		 
+		 return this;
+	 }
+	 
+	 
+
 	
 	
 	
