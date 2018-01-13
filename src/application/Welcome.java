@@ -45,7 +45,7 @@ public class Welcome extends GridPane {
 		bottom.setFont(font.labelfont());
 		Button start = new Button("start");
 		start.setOnAction(e->{
-			 ABC.setGame(ABC.who.gameList.get(0));
+			 ABC.setPane(ABC.who.getGame(0));
 			
 		});
 		

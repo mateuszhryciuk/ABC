@@ -4,6 +4,7 @@ package application;
  import javafx.scene.text.Font;
  import javafx.scene.text.FontWeight;
  import javafx.scene.text.FontPosture;
+ import javafx.scene.paint.Color;
  
  
 public class GameFonts {
@@ -18,6 +19,8 @@ public class GameFonts {
  public Font scorefont (){
 		 
 		 Font font =  Font.font ("SansSerif",FontWeight.BOLD,15);
+		
+		 
 		 
 		 return font;
 	 }

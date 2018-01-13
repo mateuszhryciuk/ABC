@@ -1,18 +1,28 @@
 package application;
 
 import java.util.*;
+import java.io.*;
 
-public class Player {
+public class Player implements Serializable{
 	
 	protected String name ;
 	private int age ;
 	ArrayList<Game> gameList = new ArrayList<>();
 	
-	public Player(String name  ){
+	public Player(){
+		
+		this.name = "noname";
+//		this.age = age;
+		gameList.add(new Literki());
+		gameList.add(new ZgadujLiterki());
+	}
+	
+	public Player(String name){
 		
 		this.name = name;
 //		this.age = age;
 		gameList.add(new Literki());
+		gameList.add(new ZgadujLiterki());
 	}
 	
 	
@@ -34,6 +44,9 @@ public class Player {
 	 public Player getPlayer (){
 		 
 		 return this;
+	 }
+	 public int gameListSize(){
+		 return gameList.size();
 	 }
 	 
 	 

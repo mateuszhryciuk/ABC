@@ -1,21 +1,28 @@
 package application;
 
-import javafx.scene.layout.Pane;
-import javafx.geometry.Pos;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-public abstract class  Game extends GridPane  {
+
+//import javafx.geometry.Pos;
+import java.io.*;
+
+//import javafx.scene.layout.GridPane;
+public abstract class  Game extends MainPane implements Serializable {
 	
-	
+	protected String gameName;
 	protected int score ;
+	protected int totalScore;
 	protected String name ;
 	protected int rewardScore;
+	protected int factor;
+	
 	
 	public Game ( ){
-		this.setAlignment(Pos.CENTER);
+	//	this.setAlignment(Pos.CENTER);
 		name = this.getClass().getSimpleName();
 		score = 0;
 		rewardScore=10;
+		factor=2;
+		totalScore=0;
+		gameName=null;
 	}
 	
 	public String getName(){
@@ -24,13 +31,32 @@ public abstract class  Game extends GridPane  {
 	public int getScore(){
 		return score;
 	}
+	public void resetScore(){
+		this.score=0;
+	}
 	public int getRewardScore(){
 		return rewardScore;
 	}
 	public void setRewardScore(int reward){
 		rewardScore=reward;
 	}
+	public void setFactor(int factor){
+		this.factor=factor;
+	}
+	public int getTotalScore(){
+		return totalScore;
+	}
 	
-	public abstract void play();{}
+	
+	public int getFactor(){
+		return factor ;}
+	public String getGameName(){
+		return gameName;
+	}
+	
+
+	
+	
+//	public abstract void play(Pa);{}
 
 }

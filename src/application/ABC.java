@@ -6,16 +6,17 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import java.util.*;
-//import javafx.application.Application;
+import java.io.*;
+
 import javafx.application.Platform;
-//import javafx.scene.Scene;
+
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioMenuItem;
+//import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.ToggleGroup;
+//import javafx.scene.control.ToggleGroup;
 //import javafx.scene.layout.BorderPane;
 //import javafx.scene.paint.Color;
 //import javafx.stage.Stage;
@@ -23,6 +24,7 @@ import javafx.scene.image.Image;
 
 
 public class ABC extends Application {
+	public static AudioPlayer audioplayer =  new AudioPlayer();
 	public static BorderPane root = new BorderPane();
 	  public static MenuBar menuBar = new MenuBar();
 	//    menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
@@ -33,18 +35,18 @@ public class ABC extends Application {
 		who = player;
 	}
 	
-	public static void  setGame(BorderPane root , Game game){
+	public static void  setPane(BorderPane root , MainPane pane){
 		
-		 root.setCenter(game);
+		 root.setCenter(pane);
 		
-		    game.play();
+		    pane.play(who);
 	}
 	
-	public static void  setGame(Game game){
+	public static void  setPane(MainPane pane){
 		
 		 
-		root.setCenter(game);
-		    game.play();
+		root.setCenter(pane);
+		    pane.play(who);
 	}
 	
 	public static void loadMenu( ArrayList<Player> players){
@@ -73,53 +75,96 @@ public class ABC extends Application {
 	    	
 	    	menuItem.add( new MenuItem(itemName));
 	    }
-	    MenuItem sPlayerMenuItem = new MenuItem("SuperPlayer");
+//	    MenuItem sPlayerMenuItem = new MenuItem("SuperPlayer");
 	    MenuItem newMenuItem = new MenuItem("nowy uczeń");
 	    newMenuItem.setOnAction(e -> root.setCenter(new Welcome(players,ABC.who)));
 	    MenuItem exitMenuItem = new MenuItem("Exit");
-	    exitMenuItem.setOnAction(e -> Platform.exit());
-	    
-	    
-for ( int i=0;i<menuItem.size();i++){
+	    exitMenuItem.setOnAction(e -> {
 	    	
-	fileMenu.getItems().add(menuItem.get(i));
-	
-	
+//	    	try {
+//	    
+//	    FileOutputStream fileStream = new FileOutputStream("Players.saved");
+//	    ObjectOutputStream os =  new ObjectOutputStream(fileStream);
+//	    os.writeObject(players);
+//	    os.close();
+//	    
+//	    
+//	    
+//	    
+//	    	} catch(Exception ex){
+//	    		ex.printStackTrace();
+//	    		
+//	    	}
+//	    		finally	{
+	    			
+	    			
+	    			
+	    			Platform.exit();
+	    			
+	    		
+//	    		}
+	    					
+	    					
+	    		
+	    		
+	    		
+	    		
 	    }
+	    		
+	    		);
+	    
+	    
+//for ( int i=0;i<menuItem.size();i++){
+//	    	
+//	fileMenu.getItems().add(menuItem.get(i));
+//	
+//	
+//	    }
 
-	    fileMenu.getItems().addAll( sPlayerMenuItem,newMenuItem,
+	    fileMenu.getItems().addAll( newMenuItem,
 	        new SeparatorMenuItem(), exitMenuItem);
 
-	    Menu webMenu = new Menu("Game");
-	    CheckMenuItem htmlMenuItem = new CheckMenuItem("HTML");
-	    htmlMenuItem.setSelected(true);
-	    webMenu.getItems().add(htmlMenuItem);
+	    Menu gameMenu = new Menu("Game");
+	    MenuItem LiterkiMenuItem = new CheckMenuItem("Literki");
+	    LiterkiMenuItem.setOnAction(e -> ABC.setPane(ABC.who.getGame(0)));
+	   // htmlMenuItem.setSelected(true);
+	    gameMenu.getItems().add(LiterkiMenuItem);
 
-	    CheckMenuItem cssMenuItem = new CheckMenuItem("CSS");
-	    cssMenuItem.setSelected(true);
-	    webMenu.getItems().add(cssMenuItem);
+	    MenuItem ZgadujLiterkiMenuItem = new CheckMenuItem("Zgaduj Literki");
+	    ZgadujLiterkiMenuItem.setOnAction(e -> ABC.setPane(ABC.who.getGame(1)));
+	   // cssMenuItem.setSelected(true);
+	    
+	    gameMenu.getItems().add(ZgadujLiterkiMenuItem);
 
-	    Menu sqlMenu = new Menu("HighScore");
-	    ToggleGroup tGroup = new ToggleGroup();
-	    RadioMenuItem mysqlItem = new RadioMenuItem("MySQL");
-	    mysqlItem.setToggleGroup(tGroup);
+	    Menu scoreMenu = new Menu("HighScore");
+	//    HighScore 
+	    
+	    for ( int i=0;i<menuItem.size();i++){
+	    	
+	    	scoreMenu.getItems().add(menuItem.get(i));
+	    	
+	    	
+	    	    }
+	    
+      for ( int i=0;i<scoreMenu.getItems().size();i++){
+	    	
+	    	scoreMenu.getItems().get(i).setOnAction(e->{
+	    		
+	    		Iterator<Player> iter = players.iterator();
+	    		if (iter.hasNext()){
+	    		setPane(new HighScore(iter.next()));}
+	    		
+	    	});
+	    	
+	    	
+	    	    }
+	    
+ 
+	
 
-	    RadioMenuItem oracleItem = new RadioMenuItem("Oracle");
-	    oracleItem.setToggleGroup(tGroup);
-	    oracleItem.setSelected(true);
+	
 
-	    sqlMenu.getItems().addAll(mysqlItem, oracleItem,
-	        new SeparatorMenuItem());
-
-	    Menu tutorialManeu = new Menu("Tutorial");
-	    tutorialManeu.getItems().addAll(
-	        new CheckMenuItem("Java"),
-	        new CheckMenuItem("JavaFX"),
-	        new CheckMenuItem("Swing"));
-
-	    sqlMenu.getItems().add(tutorialManeu);
-
-	    menuBar.getMenus().addAll(fileMenu, webMenu, sqlMenu,whoiswho);
+	    menuBar.getMenus().addAll(fileMenu, gameMenu, scoreMenu,whoiswho);
 		
 		
 		
@@ -129,8 +174,13 @@ for ( int i=0;i<menuItem.size();i++){
 	}
 
 	
-	Game literki = new Literki();
-	ArrayList<Player> players = new ArrayList<>();
+//	Game literki = new Literki();
+	
+	
+	
+	
+	
+	
 
 Anima start = new Anima ();
 
@@ -138,6 +188,23 @@ Anima start = new Anima ();
 	
 	  @Override
 	  public void start(Stage primaryStage) {
+		  ArrayList<Player> players= new ArrayList<Player>();
+
+//			try {
+//				FileInputStream fileStream = new FileInputStream("Players.saved");
+//				ObjectInputStream os = new ObjectInputStream(fileStream);
+//			Object playersList = os.readObject();
+//				
+//				 players = (ArrayList) playersList;
+//				 os.close();
+//				
+//			}catch(Exception ex ){
+//				
+//				ex.printStackTrace();
+//				 players = new ArrayList<>();
+//				
+//			}  
+		  
 		  
 //		  Player who = null;
 	//	  Welcome welcome = new Welcome(players,who);

@@ -1,36 +1,44 @@
 package application;
 
-import javafx.scene.layout.BorderPane;
+
 import javafx.scene.text.Text;
-import javafx.util.Duration;
-import javafx.scene.layout.BorderPane;
+//import javafx.util.Duration;
+//import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
-import javafx.animation.PathTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
+//import javafx.scene.shape.Line;
+
+//import com.sun.org.apache.xerces.internal.util.Status;
+
+//import javafx.animation.PathTransition;
+//import javafx.event.ActionEvent;
+//import javafx.event.EventHandler;
+//import javafx.geometry.Pos;
+//import javafx.scene.layout.FlowPane;
+//import javafx.scene.layout.VBox;
+//import javafx.scene.media.MediaPlayer;
+//import javafx.scene.media.MediaPlayer.Status;
 
 
 public class Literki extends Game{
 	
-	public Literki(){
-		
-		super();
-		
+	
+	transient Text  top = new Text("punkty:   "+this.getScore());
+	transient Text  center = new Text("?");
+	transient Text bottom = new Text("Wciśnij literkę");
+	transient StringArray text = new StringArray();
+	
+	
+
 	 
-	}
 	
-	public Literki (int reward){
+	
+	public Literki (){
 		
-		this.rewardScore=reward;
-	}
+	//	this.rewardScore=reward;
 	
-	@Override
-	public void play(){
-	StringArray text = new StringArray();
+	
+
+		gameName="Literki";
 	VBox gamePane= new VBox();
 	
 	this.getChildren().add(gamePane);
@@ -44,19 +52,23 @@ public class Literki extends Game{
 	GameFonts font = new GameFonts();
 	//String score = Integer.toString(this.getScore());
 //	Text player=new Text(ABC.who.getName());
-	Text  top = new Text("punkty:   "+this.getScore());
-	Text  center = new Text("?");
-	Text bottom = new Text("Wciśnij literkę");
+	
 	//player.setFont(font.scorefont());
 	center.setFont(font.mainfont());
 	top.setFont(font.scorefont());
 	bottom.setFont(font.labelfont());
 	gamePane.getChildren().addAll(center,bottom);
 	
-	
+	}
 
 	
-	
+	@Override
+	public void play(Player player){
+		
+	//	String playerName = player.getName();
+		
+		
+		
 	 
 //	 
 //	 Line line1 = new Line();
@@ -81,6 +93,12 @@ public class Literki extends Game{
 		 this.score++;
 		 top.setText("punkty:  "+this.getScore()+"/" +getRewardScore());
 		 bottom.setText(text.getText(newest.charAt(0)-97));
+		 
+		// System.out.println((newest.charAt(1)));
+		ABC.audioplayer.player.get((newest.charAt(0)-97)).play();
+		e.consume();
+//		Status  status = ABC.audioplayer.player.getStatus();
+		
 	
 	    }
 			
