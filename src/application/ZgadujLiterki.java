@@ -73,7 +73,12 @@ public class ZgadujLiterki extends Game{
 	gamePane.getChildren().addAll(top,center,bottom,NameOfPlayer);
 	
 	}
-
+	public ZgadujLiterki(int highscores){
+		super(highscores);
+	}
+	
+	
+	
 	
 	
 	 

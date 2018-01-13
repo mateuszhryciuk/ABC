@@ -24,6 +24,15 @@ public abstract class  Game extends MainPane  {
 		totalScore=0;
 		gameName=null;
 	}
+	public Game (int highscores ){
+		//	this.setAlignment(Pos.CENTER);
+			name = this.getClass().getSimpleName();
+			score = 0;
+			rewardScore=10;
+			factor=2;
+			totalScore=highscores;
+			gameName=null;
+		}
 	
 	public String getName(){
 		return name ;

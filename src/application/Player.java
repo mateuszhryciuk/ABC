@@ -3,7 +3,7 @@ package application;
 import java.util.*;
 import java.io.*;
 
-public class Player implements Serializable{
+public class Player {
 	
 	protected String name ;
 	private int age ;
@@ -23,6 +23,13 @@ public class Player implements Serializable{
 //		this.age = age;
 		gameList.add(new Literki());
 		gameList.add(new ZgadujLiterki());
+	}
+public Player(String name,int highscores1){
+		
+		this.name = name;
+//		this.age = age;
+		gameList.add(new Literki());
+		gameList.add(new ZgadujLiterki(highscores1));
 	}
 	
 	
