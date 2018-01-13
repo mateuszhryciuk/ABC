@@ -22,7 +22,7 @@ import javafx.scene.input.KeyCode;
 
 public class ZgadujLiterki extends Game{
 	
-	transient private int keyCode;
+	 private int keyCode;
 	private int playsound(){
 		
 		 int temp = (int)(Math.random()*26);
@@ -32,10 +32,11 @@ public class ZgadujLiterki extends Game{
 		return temp;
 	}
 	
-	transient StringArray text = new StringArray();
-	transient Text  top = new Text("punkty:   "+this.getScore());
-	transient Text  center = new Text("?");
-	transient Text bottom = new Text("zgadnij literkę");
+	 StringArray text = new StringArray();
+	 Text  top = new Text("punkty:   "+this.getScore());
+	 Text  center = new Text("?");
+	 Text bottom = new Text("zgadnij literkę");
+	 Text NameOfPlayer = new Text("");
 	
 	public ZgadujLiterki(){
 		
@@ -68,7 +69,8 @@ public class ZgadujLiterki extends Game{
 	center.setFont(font.mainfont());
 	top.setFont(font.scorefont());
 	bottom.setFont(font.labelfont());
-	gamePane.getChildren().addAll(top,center,bottom);
+	NameOfPlayer.setFont(font.labelfont());
+	gamePane.getChildren().addAll(top,center,bottom,NameOfPlayer);
 	
 	}
 
@@ -89,7 +91,8 @@ public class ZgadujLiterki extends Game{
 	
 	@Override
 	public void play(Player player){
-	//	String playerName = player.getName();
+	String playerName = player.getName();
+	
 	center.setOnKeyPressed(e->{
 		//int temp=0;
 		if(e.getCode()==KeyCode.SPACE){
@@ -105,11 +108,13 @@ public class ZgadujLiterki extends Game{
 				 this.totalScore++;
 				 
 				 top.setText("punkty:  "+this.getScore()+"/" +getRewardScore());
+				 NameOfPlayer.setText("");
 				 bottom.setText(text.getText(newest.charAt(0)-97));
 				 ABC.audioplayer.player.get(27).play();
 				 this.keyCode=99;
 				 if ( (this.getScore())==(this.getRewardScore())){ 
 					 ABC.audioplayer.player.get(29).play();
+					 NameOfPlayer.setText("Brawo "+playerName+"!");
 					this.setRewardScore((this.getRewardScore())+(this.getFactor()));
 					this.resetScore();
 				 }

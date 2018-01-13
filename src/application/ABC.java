@@ -137,7 +137,7 @@ public class ABC extends Application {
 	    gameMenu.getItems().add(ZgadujLiterkiMenuItem);
 
 	    Menu scoreMenu = new Menu("HighScore");
-	//    HighScore 
+	    HighScore highscore = new HighScore();
 	    
 	    for ( int i=0;i<menuItem.size();i++){
 	    	
@@ -150,9 +150,12 @@ public class ABC extends Application {
 	    	
 	    	scoreMenu.getItems().get(i).setOnAction(e->{
 	    		
-	    		Iterator<Player> iter = players.iterator();
-	    		if (iter.hasNext()){
-	    		setPane(new HighScore(iter.next()));}
+	    	//	Iterator<Player> iter = players.iterator();
+	    	//	if (iter.hasNext()){
+	    		setPane(highscore);
+	    				highscore.play(who);
+	    				
+	    	//}
 	    		
 	    	});
 	    	

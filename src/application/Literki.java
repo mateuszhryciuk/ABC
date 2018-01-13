@@ -22,10 +22,10 @@ import javafx.scene.layout.VBox;
 public class Literki extends Game{
 	
 	
-	transient Text  top = new Text("punkty:   "+this.getScore());
-	transient Text  center = new Text("?");
-	transient Text bottom = new Text("Wciśnij literkę");
-	transient StringArray text = new StringArray();
+	 Text  top = new Text("punkty:   "+this.getScore());
+	 Text  center = new Text("?");
+     Text bottom = new Text("Wciśnij literkę");
+	 StringArray text = new StringArray();
 	
 	
 

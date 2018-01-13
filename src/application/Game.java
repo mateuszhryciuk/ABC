@@ -2,10 +2,10 @@ package application;
 
 
 //import javafx.geometry.Pos;
-import java.io.*;
+
 
 //import javafx.scene.layout.GridPane;
-public abstract class  Game extends MainPane implements Serializable {
+public abstract class  Game extends MainPane  {
 	
 	protected String gameName;
 	protected int score ;

@@ -5,18 +5,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class HighScore extends MainPane{
+	VBox Pane= new VBox();
 	
 	
-	public HighScore(Player player){
-		this.play(player);
+	public HighScore(){
+		
+	//	VBox Pane= new VBox();
+		this.getChildren().add(Pane);
+		Pane.setSpacing(60.0);
+		
+		
 	}
 	
 	
 	public void play(Player player){
 		
-		
+		Pane.getChildren().clear();
 		String playerName =  player.getName();
-		VBox Pane= new VBox();
+	//	VBox Pane= new VBox();
 		
 		
 		
@@ -31,10 +37,10 @@ public class HighScore extends MainPane{
 		
 		
 		
-		this.getChildren().add(Pane);
+	//	this.getChildren().add(Pane);
 //		this.setAlignment(Pos.CENTER);
 		//this.setVgap(30);
-		Pane.setSpacing(60.0);
+	//	Pane.setSpacing(60.0);
 //		gamePane.setAlignment(Pos.CENTER);
 		
 
