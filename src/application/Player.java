@@ -1,7 +1,7 @@
 package application;
 
 import java.util.*;
-import java.io.*;
+
 
 public class Player {
 	
@@ -56,10 +56,6 @@ public Player(String name,int highscores1){
 		 return gameList.size();
 	 }
 	 
-	 
 
-	
-	
-	
 
 }

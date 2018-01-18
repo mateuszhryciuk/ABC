@@ -34,9 +34,6 @@ public class Literki extends Game{
 	
 	public Literki (){
 		
-	//	this.rewardScore=reward;
-	
-	
 
 		gameName="Literki";
 	VBox gamePane= new VBox();

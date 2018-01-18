@@ -14,12 +14,9 @@ import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-//import javafx.scene.control.RadioMenuItem;
+
 import javafx.scene.control.SeparatorMenuItem;
-//import javafx.scene.control.ToggleGroup;
-//import javafx.scene.layout.BorderPane;
-//import javafx.scene.paint.Color;
-//import javafx.stage.Stage;
+
 import javafx.scene.image.Image;
 
 
@@ -27,7 +24,9 @@ public class ABC extends Application {
 	public static AudioPlayer audioplayer =  new AudioPlayer();
 	public static BorderPane root = new BorderPane();
 	  public static MenuBar menuBar = new MenuBar();
-	//    menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
+	  public static File savedData= new File ("Data");
+	  public static ArrayList<Player> players =new ArrayList<Player>();
+
 	
 	public static Player who = null;
 	public static void setWho(Player player){
@@ -54,20 +53,15 @@ public class ABC extends Application {
 		
 		
 
-	    // File menu - new, save, exit
+	
 	    Menu fileMenu = new Menu("Uczeń");
 	    Menu whoiswho= new Menu();
 	   if ( ABC.who==null) { whoiswho.setText("uczeń niezalogowany");}
 	    else {whoiswho.setText("uczeń : "+ABC.who.getName().toUpperCase());}
-	//    MenuItem newMenuItem = new MenuItem("New");
+
 	    ArrayList<MenuItem> menuItem =  new ArrayList<>();
 	    
-	//    newMenuItem.setOnAction(actionEvent -> {
-	    	
-	//   players.add( new Player("jan",3));
-	 //  loadMenu(menuBar,players);
-	    	
-	//    });
+	
 	    
 	    for ( int i=0;i<players.size();i++){
 	    	
@@ -75,51 +69,47 @@ public class ABC extends Application {
 	    	
 	    	menuItem.add( new MenuItem(itemName));
 	    }
-//	    MenuItem sPlayerMenuItem = new MenuItem("SuperPlayer");
+
 	    MenuItem newMenuItem = new MenuItem("nowy uczeń");
 	    newMenuItem.setOnAction(e -> root.setCenter(new Welcome(players,ABC.who)));
 	    MenuItem exitMenuItem = new MenuItem("Exit");
 	    exitMenuItem.setOnAction(e -> {
 	    	
-//	    	try {
-//	    
-//	    FileOutputStream fileStream = new FileOutputStream("Players.saved");
-//	    ObjectOutputStream os =  new ObjectOutputStream(fileStream);
-//	    os.writeObject(players);
-//	    os.close();
-//	    
-//	    
-//	    
-//	    
-//	    	} catch(Exception ex){
-//	    		ex.printStackTrace();
-//	    		
-//	    	}
-//	    		finally	{
-	    			
-	    			
-	    			
-	    			Platform.exit();
-	    			
-	    		
-//	    		}
-	    					
-	    					
-	    		
-	    		
-	    		
-	    		
+   	try {
+	    
+   
+   		FileWriter fw =  new FileWriter(savedData);
+ 
+   	    PrintWriter writer = new PrintWriter(fw);
+	
+	    String data = new String();
+	    
+	    for (int i=0;i<players.size();i++){
+	    	data=players.get(i).getName()+","+players.get(i).getGame(1).getName()+","+players.get(i).getGame(1).getTotalScore();
+	    	writer.println(data);
+	    	
 	    }
+	  writer.println("---Date---"+new Date());
+	savedData.delete();
+	   writer.close();
+	    
+	    
+	    
+	    
+	    	} catch(Exception ex){
+	    		ex.printStackTrace();
+	    		
+	    	}
+	    		
+	    			
+	    	
+	    			Platform.exit();}
+	    			
+	
 	    		
 	    		);
 	    
-	    
-//for ( int i=0;i<menuItem.size();i++){
-//	    	
-//	fileMenu.getItems().add(menuItem.get(i));
-//	
-//	
-//	    }
+
 
 	    fileMenu.getItems().addAll( newMenuItem,
 	        new SeparatorMenuItem(), exitMenuItem);
@@ -127,12 +117,12 @@ public class ABC extends Application {
 	    Menu gameMenu = new Menu("Game");
 	    MenuItem LiterkiMenuItem = new CheckMenuItem("Literki");
 	    LiterkiMenuItem.setOnAction(e -> ABC.setPane(ABC.who.getGame(0)));
-	   // htmlMenuItem.setSelected(true);
+	
 	    gameMenu.getItems().add(LiterkiMenuItem);
 
 	    MenuItem ZgadujLiterkiMenuItem = new CheckMenuItem("Zgaduj Literki");
 	    ZgadujLiterkiMenuItem.setOnAction(e -> ABC.setPane(ABC.who.getGame(1)));
-	   // cssMenuItem.setSelected(true);
+	 
 	    
 	    gameMenu.getItems().add(ZgadujLiterkiMenuItem);
 
@@ -150,40 +140,20 @@ public class ABC extends Application {
 	    	
 	    	scoreMenu.getItems().get(i).setOnAction(e->{
 	    		
-	    	//	Iterator<Player> iter = players.iterator();
-	    	//	if (iter.hasNext()){
+	    	
 	    		setPane(highscore);
-	    				highscore.play(who);
-	    				
-	    	//}
+	    				highscore.play(players.get(i));
+	
 	    		
 	    	});
 	    	
 	    	
 	    	    }
-	    
- 
-	
-
-	
 
 	    menuBar.getMenus().addAll(fileMenu, gameMenu, scoreMenu,whoiswho);
-		
-		
-		
-		
-		
-		
+
 	}
 
-	
-//	Game literki = new Literki();
-	
-	
-	
-	
-	
-	
 
 Anima start = new Anima ();
 
@@ -191,30 +161,49 @@ Anima start = new Anima ();
 	
 	  @Override
 	  public void start(Stage primaryStage) {
-		  ArrayList<Player> players= new ArrayList<Player>();
+		  String data;
+		
+		 
+		  if (savedData.exists()) {System.out.println("Saved data file is availble");
+		 try{ 
+		  Scanner file = new Scanner(savedData);
+		  
+		  do {
+		  data = file.nextLine();
+		  String [] playersData = data.split(",");
+	  System.out.println(playersData[0]);
 
-//			try {
-//				FileInputStream fileStream = new FileInputStream("Players.saved");
-//				ObjectInputStream os = new ObjectInputStream(fileStream);
-//			Object playersList = os.readObject();
-//				
-//				 players = (ArrayList) playersList;
-//				 os.close();
-//				
-//			}catch(Exception ex ){
-//				
-//				ex.printStackTrace();
-//				 players = new ArrayList<>();
-//				
-//			}  
+		  System.out.println(playersData[2]);
+		  players.add(new Player(playersData[0],Integer.parseInt(playersData[2])));
+		 
+	
 		  
 		  
-//		  Player who = null;
-	//	  Welcome welcome = new Welcome(players,who);
+		  }while ( file.hasNext() &&(!data.contains("---Date---")));
+			  
+	
+			  
+			  
+			  
+			  
+		  
+		 
+		  file.close();}
+		 catch(Exception ex){
+			 
+			 ex.printStackTrace();
+		 }
+		  
+		  
+		  
+
+		  }else {
+		  
+		   players= new ArrayList<Player>();}
+
+
 		  menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
-//		  players.add(new Player ("imie" ));
-	//	  players.add(new Player ("imiyyy" ));
-		//  players.add(new Player ("i" ));
+
 		  
 		  
 		  
@@ -223,7 +212,7 @@ Anima start = new Anima ();
 	    Scene scene = new Scene(start, 600, 350, Color.WHITE);
 	    Scene startScene = new Scene(root,600,500);
 
-	  //  MenuBar menuBar = new MenuBar();
+	
 	    menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
 	    root.setTop(menuBar);
 	    
@@ -233,7 +222,7 @@ Anima start = new Anima ();
 	    start.play(primaryStage,startScene);
 
 	    
-	    //setGame(root,literki);      waząna metoda na przyszłośc
+	 
 	    loadMenu(players);
 	    root.setCenter(new Welcome(players,ABC.who));
 	    
@@ -247,6 +236,10 @@ Anima start = new Anima ();
 	
 	
 	public static void main(String[] args) {
+		
+		
+		
+		
 		launch(args);
 	}
 }

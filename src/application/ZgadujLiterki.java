@@ -74,7 +74,39 @@ public class ZgadujLiterki extends Game{
 	
 	}
 	public ZgadujLiterki(int highscores){
-		super(highscores);
+		this.totalScore=highscores;
+		gameName="Zgaduj Literki";
+		
+		
+		
+		
+		
+		
+		
+		VBox gamePane= new VBox();
+		
+		this.getChildren().add(gamePane);
+//		this.setAlignment(Pos.CENTER);
+		//this.setVgap(30);
+		gamePane.setSpacing(60.0);
+//		gamePane.setAlignment(Pos.CENTER);
+		
+		
+		
+		GameFonts font = new GameFonts();
+		//String score = Integer.toString(this.getScore());
+//		Text player=new Text(ABC.who.getName());
+		
+		top.setFill(Color.web("#C31919"));
+		
+		//player.setFont(font.scorefont());
+		center.setFont(font.mainfont());
+		top.setFont(font.scorefont());
+		bottom.setFont(font.labelfont());
+		NameOfPlayer.setFont(font.labelfont());
+		gamePane.getChildren().addAll(top,center,bottom,NameOfPlayer);
+		
+	
 	}
 	
 	
