@@ -3,16 +3,17 @@ package application;
 import java.util.*;
 
 
-public class Player {
+public class Player implements Comparable<Player> {
 	
 	protected String name ;
-	private int age ;
+	private int playerScore;
+	
 	ArrayList<Game> gameList = new ArrayList<>();
 	
 	public Player(){
 		
 		this.name = "noname";
-//		this.age = age;
+
 		gameList.add(new Literki());
 		gameList.add(new ZgadujLiterki());
 	}
@@ -38,11 +39,7 @@ public Player(String name,int highscores1){
 		return name ;
 	}
 	
-	public int getAge () {
-		
-		return age;
 	
-	}
 	
 	public Game getGame(int num){
 		
@@ -56,6 +53,28 @@ public Player(String name,int highscores1){
 		 return gameList.size();
 	 }
 	 
+ 
+ public int getPlayerScore(){
+	 
+	  return this.playerScore;
+	 
+	 
+	 
+ }
+ public void updatePlayerScore(){
+	 int playerScore=0;
+	 for (int i=1;i<this.gameListSize();i++){
+		 playerScore += this.getGame(i).getTotalScore();
+	 }
+	  this.playerScore=playerScore;
+	 
+	 }
+ public int compareTo(Player p){
+	 return this.getPlayerScore()-p.getPlayerScore();
+	 
+ }
+ 
+	 
+ }
 
 
-}

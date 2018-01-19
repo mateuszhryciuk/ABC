@@ -1,5 +1,9 @@
 package application;
 
+//import java.util.Arrays;
+import java.util.Collections;
+
+import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -12,7 +16,7 @@ public class HighScore extends MainPane{
 		
 	//	VBox Pane= new VBox();
 		this.getChildren().add(Pane);
-		Pane.setSpacing(60.0);
+		Pane.setSpacing(3.0);
 		
 		
 	}
@@ -22,31 +26,34 @@ public class HighScore extends MainPane{
 		
 		Pane.getChildren().clear();
 		String playerName =  player.getName();
-	//	VBox Pane= new VBox();
+		this.setAlignment(Pos.TOP_CENTER);
 		
-		
-		
-	
+		for ( int i = 0 ; i<ABC.players.size();i++){
 			
+			ABC.players.get(i).updatePlayerScore();			
+		}
+		
+		Collections.sort(ABC.players);
 			
-			
 		
 		
 		
-		for ( int i = 1 ; i<player.gameListSize();i++){
+		for ( int i = ABC.players.size()-1;i>=0;i--){
 		
 		
 		
 	//	this.getChildren().add(Pane);
-//		this.setAlignment(Pos.CENTER);
-		//this.setVgap(30);
-	//	Pane.setSpacing(60.0);
+	
+	//	this.setVgap(5);
+	//	Pane.setSpacing(5.0);
 //		gamePane.setAlignment(Pos.CENTER);
 		
-
-		Text  top = new Text(player.getGame(i).gameName);
-		Text  center = new Text(Integer.toString(player.getGame(i).getTotalScore()));
-		Text bottom = new Text();
+			Text  top = new Text(ABC.players.get(i).getName());
+		Text  center = new Text(player.getGame(1).gameName+" : "+(ABC.players.get(i).getGame(1).getTotalScore()));
+	//	Text  bottom = new Text(Integer.toString(ABC.players.get(i).getGame(1).getTotalScore()));
+	//	Text  ncenter = new Text(ABC.players.get(i).getGame(0).gameName);
+	//	Text  nbottom = new Text(Integer.toString(ABC.players.get(i).getGame(1).getTotalScore()));
+	
 		
 		
 		
@@ -55,13 +62,15 @@ public class HighScore extends MainPane{
 		//String score = Integer.toString(this.getScore());
 //		Text player=new Text(ABC.who.getName());
 		
+		if(playerName.equals(ABC.players.get(i).getName())) {top.setFill(Color.web("#D70000"));}
+		
 		center.setFill(Color.web("#707070"));
 		
 		//player.setFont(font.scorefont());
-		center.setFont(font.mainfont());
-		bottom.setFont(font.scorefont());
+		center.setFont(font.scorefont());
+	//	bottom.setFont(font.scorefont());
 		top.setFont(font.labelfont());
-		Pane.getChildren().addAll(top,center,bottom);
+		Pane.getChildren().addAll(top,center);
 		
 		
 		

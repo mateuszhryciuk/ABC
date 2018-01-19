@@ -1,13 +1,12 @@
 package application;
 
-//import javafx.application.Application;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.*;
 import javafx.scene.text.FontWeight;
-//import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -19,22 +18,12 @@ import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
 import javafx.animation.FillTransition;
 import javafx.animation.ParallelTransition;
-/////import javafx.scene.media.Media;
-//import javafx.scene.media.MediaPlayer;
-//import javafx.scene.media.MediaView;
-//import java.io.File;
-//import javafx.scene.image.Image;
 
 public class Anima extends Pane{
-	
-	
+		
 		
 		public void play (Stage stage , Scene scene){
-	
 			
-		//	Media introSound =  new Media (getClass().getClassLoader().getResource("xylophone.wav").toString());
-		//	MediaPlayer mediaPlayer = new MediaPlayer(introSound);
-		
 			 
 			 Line line1 = new Line();
 			 line1.setStartX(0);
@@ -137,10 +126,14 @@ public class Anima extends Pane{
 			     this.getChildren().add(labelC); };
 			 
 			 EventHandler<ActionEvent> eventHandlerB = e ->{
-				// mediaPlayer.play();
+				
 				 
 				 ABC.audioplayer.player.get(26).play();
-				 this.getChildren().add(labelB);};
+				 
+				 
+				
+				 
+			 };
 				 
 				 EventHandler<ActionEvent> eventHandlerAll = e ->{					 
 					 pathA.play();
@@ -166,13 +159,14 @@ public class Anima extends Pane{
 		 Timeline animC = new Timeline(KeyFrameC);
 		 Timeline animAll = new Timeline(KeyFrameAll);
 		 Timeline animEnd = new Timeline(KeyFrameEnd);
-			 
+
 			 this.getChildren().add(labelA);
 			 
 			 SequentialTransition sTransition1 = new SequentialTransition();
 		 sTransition1.getChildren().addAll(path1,fillA,animB,parallel,fillB,animC,path3,fillC,animAll,animEnd);
 	
 		 sTransition1.play();
+	
 		 this.getChildren().add(labelB);
 		 			 
 			

@@ -10,7 +10,7 @@ import java.io.*;
 
 import javafx.application.Platform;
 
-import javafx.scene.control.CheckMenuItem;
+
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -21,10 +21,11 @@ import javafx.scene.image.Image;
 
 
 public class ABC extends Application {
+	Anima start = new Anima ();
 	public static AudioPlayer audioplayer =  new AudioPlayer();
 	public static BorderPane root = new BorderPane();
 	  public static MenuBar menuBar = new MenuBar();
-	  public static File savedData= new File ("Data");
+	  public static File savedData= new File ("Data/scores");
 	  public static ArrayList<Player> players =new ArrayList<Player>();
 
 	
@@ -90,7 +91,7 @@ public class ABC extends Application {
 	    	
 	    }
 	  writer.println("---Date---"+new Date());
-	savedData.delete();
+	//savedData.delete();                                                                             //     kasowanie danych
 	   writer.close();
 	    
 	    
@@ -115,12 +116,12 @@ public class ABC extends Application {
 	        new SeparatorMenuItem(), exitMenuItem);
 
 	    Menu gameMenu = new Menu("Game");
-	    MenuItem LiterkiMenuItem = new CheckMenuItem("Literki");
+	    MenuItem LiterkiMenuItem = new MenuItem("Literki");
 	    LiterkiMenuItem.setOnAction(e -> ABC.setPane(ABC.who.getGame(0)));
 	
 	    gameMenu.getItems().add(LiterkiMenuItem);
 
-	    MenuItem ZgadujLiterkiMenuItem = new CheckMenuItem("Zgaduj Literki");
+	    MenuItem ZgadujLiterkiMenuItem = new MenuItem("Zgaduj Literki");
 	    ZgadujLiterkiMenuItem.setOnAction(e -> ABC.setPane(ABC.who.getGame(1)));
 	 
 	    
@@ -128,34 +129,27 @@ public class ABC extends Application {
 
 	    Menu scoreMenu = new Menu("HighScore");
 	    HighScore highscore = new HighScore();
+	    MenuItem showScores = new MenuItem("Pokaż wyniki");
+	    showScores.setOnAction(e -> {
 	    
-	    for ( int i=0;i<menuItem.size();i++){
-	    	
-	    	scoreMenu.getItems().add(menuItem.get(i));
-	    	
-	    	
-	    	    }
+	    setPane(highscore);
+		highscore.play(who);
 	    
-      for ( int i=0;i<scoreMenu.getItems().size();i++){
-	    	
-	    	scoreMenu.getItems().get(i).setOnAction(e->{
 	    		
-	    	
-	    		setPane(highscore);
-	    				highscore.play(players.get(i));
-	
 	    		
-	    	});
-	    	
-	    	
-	    	    }
+	    		
+	    		
+	    });
+	    scoreMenu.getItems().add(showScores);
+	    
+	  
 
 	    menuBar.getMenus().addAll(fileMenu, gameMenu, scoreMenu,whoiswho);
 
 	}
 
 
-Anima start = new Anima ();
+
 
 
 	
@@ -164,7 +158,7 @@ Anima start = new Anima ();
 		  String data;
 		
 		 
-		  if (savedData.exists()) {System.out.println("Saved data file is availble");
+		  if (savedData.exists()) {System.out.println("Saved data file is available");
 		 try{ 
 		  Scanner file = new Scanner(savedData);
 		  
@@ -172,8 +166,13 @@ Anima start = new Anima ();
 		  data = file.nextLine();
 		  String [] playersData = data.split(",");
 	  System.out.println(playersData[0]);
+	//  System.out.println(playersData.length);
+	 
 
-		  System.out.println(playersData[2]);
+		
+	  
+	  
+	  System.out.println(playersData[2]);
 		  players.add(new Player(playersData[0],Integer.parseInt(playersData[2])));
 		 
 	
@@ -199,7 +198,10 @@ Anima start = new Anima ();
 
 		  }else {
 		  
-		   players= new ArrayList<Player>();}
+			  
+		  System.out.println("Saved data not available , using empty players list");
+		
+		  }
 
 
 		  menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
