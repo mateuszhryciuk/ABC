@@ -14,6 +14,14 @@ public class GameFonts {
 		 return font;
 	 }
 	 
+ public Font smainfont (){
+		 
+		 Font font =  Font.font ("SansSerif",FontWeight.BOLD,50);
+		 
+		 return font;
+	 }
+
+	 
  public Font scorefont (){
 		 
 		 Font font =  Font.font ("SansSerif",FontWeight.BOLD,15);

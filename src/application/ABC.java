@@ -25,7 +25,7 @@ public class ABC extends Application {
 	public static AudioPlayer audioplayer =  new AudioPlayer();
 	public static BorderPane root = new BorderPane();
 	  public static MenuBar menuBar = new MenuBar();
-	  public static File savedData= new File ("Data/scores");
+	  public static File savedData= new File ("scores.txt");
 	  public static ArrayList<Player> players =new ArrayList<Player>();
 
 	
@@ -71,7 +71,7 @@ public class ABC extends Application {
 	    	menuItem.add( new MenuItem(itemName));
 	    }
 
-	    MenuItem newMenuItem = new MenuItem("nowy uczeń");
+	    MenuItem newMenuItem = new MenuItem("kolejny uczeń");
 	    newMenuItem.setOnAction(e -> root.setCenter(new Welcome(players,ABC.who)));
 	    MenuItem exitMenuItem = new MenuItem("Exit");
 	    exitMenuItem.setOnAction(e -> {
@@ -86,7 +86,7 @@ public class ABC extends Application {
 	    String data = new String();
 	    
 	    for (int i=0;i<players.size();i++){
-	    	data=players.get(i).getName()+","+players.get(i).getGame(1).getName()+","+players.get(i).getGame(1).getTotalScore();
+	    	data=players.get(i).getName()+","+players.get(i).getGame(1).getName()+","+players.get(i).getGame(1).getTotalScore()+","+players.get(i).getGame(2).getTotalScore()+","+players.get(i).getGame(3).getTotalScore();
 	    	writer.println(data);
 	    	
 	    }
@@ -126,6 +126,17 @@ public class ABC extends Application {
 	 
 	    
 	    gameMenu.getItems().add(ZgadujLiterkiMenuItem);
+	    
+	    MenuItem DodawanieMenuItem = new MenuItem("Dodawanie");
+	    DodawanieMenuItem.setOnAction(e -> ABC.setPane(ABC.who.getGame(2))); 
+	    
+	    gameMenu.getItems().add(DodawanieMenuItem);
+	    
+	    MenuItem MnozenieMenuItem = new MenuItem("Mnożenie");
+	    MnozenieMenuItem.setOnAction(e -> ABC.setPane(ABC.who.getGame(3))); 
+	    
+	    gameMenu.getItems().add(MnozenieMenuItem);
+	    
 
 	    Menu scoreMenu = new Menu("HighScore");
 	    HighScore highscore = new HighScore();
@@ -166,6 +177,8 @@ public class ABC extends Application {
 		  data = file.nextLine();
 		  String [] playersData = data.split(",");
 	  System.out.println(playersData[0]);
+	  
+	  
 	//  System.out.println(playersData.length);
 	 
 
@@ -173,7 +186,7 @@ public class ABC extends Application {
 	  
 	  
 	  System.out.println(playersData[2]);
-		  players.add(new Player(playersData[0],Integer.parseInt(playersData[2])));
+		  players.add(new Player(playersData[0],Integer.parseInt(playersData[2]),Integer.parseInt(playersData[3]),Integer.parseInt(playersData[4])));
 		 
 	
 		  

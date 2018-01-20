@@ -1,18 +1,8 @@
 package application;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
 import javafx.scene.media.AudioClip;
 
 import java.util.*;
-//import java.io.File;
-//import javafx.scene.image.Image;
-
-
-	
-	
-		
-		
-	
 			
 			
 public class AudioPlayer {

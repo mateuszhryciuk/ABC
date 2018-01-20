@@ -21,15 +21,14 @@ public class Welcome extends GridPane {
 		
 		VBox gamePane= new VBox();
 		TextField center = new TextField();
-		TextField wiek = new TextField();
-		wiek.setFont(font.labelfont());
+	
+	
 		center.setAlignment(Pos.CENTER);
 		center.setMaxWidth(500);
 		
 		
 		this.getChildren().add(gamePane);
-//		this.setAlignment(Pos.CENTER);
-		//this.setVgap(30);
+
 		gamePane.setSpacing(40.0);
 	gamePane.setAlignment(Pos.CENTER);
 		
@@ -50,16 +49,14 @@ public class Welcome extends GridPane {
 		});
 		
 		
-		Button button = new Button("Dodaj mnie do listy graczy");
+		Button button = new Button("Dodaj mnie do listy uczniów");
 		button.setOnAction(e->{
 			
-		//	String nowyPlayer ;
-		//	int age ;
+	
 			top.setText("Podaj imię !");
 			center.setText("imie");
 			gamePane.getChildren().remove(button);
-		//	gamePane.getChildren().remove(bottom);
-			//gamePane.getChildren().add(wiek);
+		
 			
 			center.setOnAction(ex -> {
 				
@@ -125,7 +122,7 @@ public class Welcome extends GridPane {
 					 
 					 else {
 						 
-						 top.setText("Nie ma takiego gracza ! ");
+						 top.setText("Nie ma takiego ucznia ! ");
 					//	 gamePane.getChildren().add(button);
 						 
 						 

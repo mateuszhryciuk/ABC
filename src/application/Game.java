@@ -1,10 +1,7 @@
 package application;
 
 
-//import javafx.geometry.Pos;
 
-
-//import javafx.scene.layout.GridPane;
 public abstract class  Game extends MainPane  {
 	
 	protected String gameName;
@@ -16,7 +13,7 @@ public abstract class  Game extends MainPane  {
 	
 	
 	public Game ( ){
-	//	this.setAlignment(Pos.CENTER);
+	
 		name = this.getClass().getSimpleName();
 		score = 0;
 		rewardScore=10;
@@ -25,7 +22,7 @@ public abstract class  Game extends MainPane  {
 		gameName=null;
 	}
 	public Game (int highscores ){
-		//	this.setAlignment(Pos.CENTER);
+	
 			name = this.getClass().getSimpleName();
 			score = 0;
 			rewardScore=10;
@@ -66,6 +63,5 @@ public abstract class  Game extends MainPane  {
 
 	
 	
-//	public abstract void play(Pa);{}
 
 }
