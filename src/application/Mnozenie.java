@@ -8,13 +8,13 @@ import javafx.scene.text.Text;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.control.Label;
+//import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 //import javafx.animation.PathTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+//import javafx.event.ActionEvent;
+//import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.layout.GridPane;
+//import javafx.scene.layout.GridPane;
 import javafx.scene.control.TextField;
 //import javafx.event.ActionEvent;
 //import javafx.event.EventHandler;
@@ -47,7 +47,7 @@ public class Mnozenie extends Game{
 	 Text question = new Text("?");
 	// Text bottom = new Text("podaj wynik");
 	 Text NameOfPlayer = new Text("");
-	// private Button bottom =  new Button ("nastepne ->");
+	// private Button bottom =  new Button ("");
 	
 	public Mnozenie(){
 	this(0);
@@ -56,7 +56,7 @@ public class Mnozenie extends Game{
 	public Mnozenie(int highscores){
 	//	this();
 		this.totalScore=highscores;
-		bottom = new Button("nastepne ->") ;
+		bottom = new Button("spacja lub kliknij") ;
 		center.setAlignment(Pos.CENTER);
 			equals.setMaxWidth(150);
 			equals.setMaxHeight(80.0);
@@ -120,7 +120,7 @@ public class Mnozenie extends Game{
 		
 	String playerName = player.getName();
 	
-	gamePane.setOnKeyPressed(e->{
+	equals.setOnKeyPressed(e->{
 		
 		if( e.getCode()==KeyCode.SPACE){
 			
@@ -171,7 +171,7 @@ public class Mnozenie extends Game{
 	
 
 	 equals.requestFocus();
-	   center.requestFocus();
+	//   center.requestFocus();
 }
 
 }

@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -15,7 +16,7 @@ public class HighScore extends MainPane{
 	public HighScore(){
 		
 	//	VBox Pane= new VBox();
-		this.getChildren().add(Pane);
+	//	this.getChildren().add(Pane);
 		Pane.setSpacing(3.0);
 		
 		
@@ -37,8 +38,9 @@ public class HighScore extends MainPane{
 			
 		
 		
-		
+		int j=0;
 		for ( int i = ABC.players.size()-1;i>=0;i--){
+			j++;
 		
 		
 		
@@ -47,12 +49,12 @@ public class HighScore extends MainPane{
 	//	this.setVgap(5);
 	//	Pane.setSpacing(5.0);
 //		gamePane.setAlignment(Pos.CENTER);
-		
+		Text pos = new Text(""+j+".");
 			Text  top = new Text(ABC.players.get(i).getName());
-		Text  center1 = new Text(player.getGame(1).gameName+" : "+(ABC.players.get(i).getGame(1).getTotalScore()));
-		Text  center2 = new Text(player.getGame(2).gameName+" : "+(ABC.players.get(i).getGame(2).getTotalScore()));
-		Text  center3 = new Text(player.getGame(3).gameName+" : "+(ABC.players.get(i).getGame(3).getTotalScore()));
-	//	Text  bottom = new Text(Integer.toString(ABC.players.get(i).getGame(1).getTotalScore()));
+		Text  center1 = new Text(player.getGame(1).getName()+" : "+(ABC.players.get(i).getGame(1).getTotalScore()));
+		Text  center2 = new Text(player.getGame(2).getName()+" : "+(ABC.players.get(i).getGame(2).getTotalScore()));
+		Text  center3 = new Text(player.getGame(3).getName()+" : "+(ABC.players.get(i).getGame(3).getTotalScore()));
+		Text  bottom = new Text("");
 	//	Text  ncenter = new Text(ABC.players.get(i).getGame(0).gameName);
 	//	Text  nbottom = new Text(Integer.toString(ABC.players.get(i).getGame(1).getTotalScore()));
 	
@@ -69,15 +71,27 @@ public class HighScore extends MainPane{
 		center1.setFill(Color.web("#707070"));
 		center2.setFill(Color.web("#707070"));
 		center3.setFill(Color.web("#707070"));
-		
-		//player.setFont(font.scorefont());
+		pos.setFill(Color.web("#707070"));
+		//player.setFont(font.scorefont(aa));
+		pos.setFont(font.smainfont());
 		center1.setFont(font.scorefont());
 		center2.setFont(font.scorefont());
 		center3.setFont(font.scorefont());
 	//	bottom.setFont(font.scorefont());
 		top.setFont(font.labelfont());
-		Pane.getChildren().addAll(top,center1,center2,center3);
 		
+		//this.setAlignment(Pos.CENTER);
+		
+		//ScrollPane scroll = new ScrollPane();
+		Pane.getChildren().addAll(pos,top,center1,center2,center3,bottom);
+		//scroll.setContent(Pane);
+		Pane.setAlignment(Pos.CENTER);
+		ScrollPane scroll = new ScrollPane(Pane);
+		scroll.setFitToWidth(true);
+		scroll.setPrefSize(600, 600);
+		
+
+		this.getChildren().add(scroll);
 		
 		
 		

@@ -3,22 +3,19 @@ package application;
 
 import javafx.scene.text.Text;
 
-//import javafx.util.Duration;
-//import javafx.scene.layout.BorderPane;
+
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.control.Label;
+//import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 //import javafx.animation.PathTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.layout.GridPane;
-import javafx.scene.control.TextField;
 //import javafx.event.ActionEvent;
 //import javafx.event.EventHandler;
-//import javafx.event.*;
+import javafx.geometry.Pos;
+//import javafx.scene.layout.GridPane;
+import javafx.scene.control.TextField;
+
 import javafx.scene.input.KeyCode; 
 
 
@@ -56,7 +53,7 @@ public class Dodawanie extends Game{
 	public Dodawanie(int highscores){
 	//	this();
 		this.totalScore=highscores;
-		bottom = new Button("nastepne ->") ;
+		bottom = new Button("spacja lub kliknij") ;
 		center.setAlignment(Pos.CENTER);
 			equals.setMaxWidth(150);
 			equals.setMaxHeight(80.0);
@@ -120,7 +117,7 @@ public class Dodawanie extends Game{
 		
 	String playerName = player.getName();
 	
-	gamePane.setOnKeyPressed(e->{
+	equals.setOnKeyPressed(e->{
 		
 		if( e.getCode()==KeyCode.SPACE){
 			
@@ -171,7 +168,7 @@ public class Dodawanie extends Game{
 	
 
 	 equals.requestFocus();
-	   center.requestFocus();
+	//   center.requestFocus();
 }
 
 }

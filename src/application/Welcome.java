@@ -41,7 +41,7 @@ public class Welcome extends GridPane {
 		Text bottom = new Text("");
 		center.setFont(font.mainfont());
 		top.setFont(font.scorefont());
-		bottom.setFont(font.labelfont());
+		bottom.setFont(font.scorefont());
 		Button start = new Button("start");
 		start.setOnAction(e->{
 			 ABC.setPane(ABC.who.getGame(0));
@@ -60,7 +60,21 @@ public class Welcome extends GridPane {
 			
 			center.setOnAction(ex -> {
 				
+				boolean wrongName=false;
+				
 				String name = center.getText();
+				
+				for ( int l =0 ;l<players.size();l++ ){
+					if ( players.get(l).getName().equals(name)){
+						
+						wrongName=true;
+						break;
+					}
+					
+				}
+				
+				if(wrongName) {bottom.setText("Pod tym imieniem już ktoś jest zalogowany...");}
+				else{
 				players.add(new Player(name));
 				ABC.menuBar.getMenus().clear();
 				ABC.setWho(players.get(players.size()-1));
@@ -69,6 +83,7 @@ public class Welcome extends GridPane {
 				ABC.loadMenu(players);
 				gamePane.getChildren().remove(top);
 			gamePane.getChildren().add(start);
+				}
 				
 				
 				 

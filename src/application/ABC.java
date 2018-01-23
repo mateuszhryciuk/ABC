@@ -73,7 +73,7 @@ public class ABC extends Application {
 
 	    MenuItem newMenuItem = new MenuItem("kolejny uczeń");
 	    newMenuItem.setOnAction(e -> root.setCenter(new Welcome(players,ABC.who)));
-	    MenuItem exitMenuItem = new MenuItem("Exit");
+	    MenuItem exitMenuItem = new MenuItem("Zapis wyników i wyjście");
 	    exitMenuItem.setOnAction(e -> {
 	    	
    	try {
@@ -115,7 +115,7 @@ public class ABC extends Application {
 	    fileMenu.getItems().addAll( newMenuItem,
 	        new SeparatorMenuItem(), exitMenuItem);
 
-	    Menu gameMenu = new Menu("Game");
+	    Menu gameMenu = new Menu("Ćwiczenia");
 	    MenuItem LiterkiMenuItem = new MenuItem("Literki");
 	    LiterkiMenuItem.setOnAction(e -> ABC.setPane(ABC.who.getGame(0)));
 	
@@ -138,7 +138,7 @@ public class ABC extends Application {
 	    gameMenu.getItems().add(MnozenieMenuItem);
 	    
 
-	    Menu scoreMenu = new Menu("HighScore");
+	    Menu scoreMenu = new Menu("Wyniki");
 	    HighScore highscore = new HighScore();
 	    MenuItem showScores = new MenuItem("Pokaż wyniki");
 	    showScores.setOnAction(e -> {
