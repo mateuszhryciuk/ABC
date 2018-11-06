@@ -49,7 +49,7 @@ public class HighScore extends MainPane{
 	//	this.setVgap(5);
 	//	Pane.setSpacing(5.0);
 //		gamePane.setAlignment(Pos.CENTER);
-// lines below are to being fixed , everytime you have to hardcode games in . Fix the architecture - class Highscore!
+// lines below are to being fixed , everytime you have to hardcode games in . Fix the architecture - class.Player!!!!!!!!!!!!!!!!!!!!!!!
 		Text pos = new Text(""+j+".");
 			Text  top = new Text(ABC.players.get(i).getName());
 		Text  center1 = new Text(player.getGame(1).getName()+" : "+(ABC.players.get(i).getGame(1).getTotalScore()));
