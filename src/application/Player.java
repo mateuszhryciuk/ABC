@@ -13,7 +13,7 @@ public class Player implements Comparable<Player> {
 	public Player(){
 		
 		this.name = "noname";
-
+// lines below are to being fixed , everytime you have to hardcode games in . Fix a bit the architecture !
 		gameList.add(new Literki());
 		gameList.add(new ZgadujLiterki());
 		gameList.add(new Dodawanie());
@@ -23,7 +23,7 @@ public class Player implements Comparable<Player> {
 	public Player(String name){
 		
 		this.name = name;
-
+// lines below are to being fixed , everytime you have to hardcode games in . Fix a bit the architecture  !
 		gameList.add(new Literki());
 		gameList.add(new ZgadujLiterki());
 		gameList.add(new Dodawanie());
